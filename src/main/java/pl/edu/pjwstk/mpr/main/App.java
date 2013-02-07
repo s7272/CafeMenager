@@ -1,4 +1,4 @@
-package pl.edu.pjwstk.mpr.cafe;
+package pl.edu.pjwstk.mpr.main;
 
 import java.io.BufferedReader;
 import java.io.IOException;
