@@ -1,49 +1,78 @@
 package pl.edu.pjwstk.mpr.cafe;
 
-public class Cafe {
-	private String name;
-	private String address;
-	private String phone;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "cafe", catalog = "cafeDB")
+public class Cafe implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+	private Integer cafeId;
+	private String cafeName;
+	private String cafeAddress;
+	private String cafePhone;
 	private Integer numOfEmployees;
 	private Integer numOfTables;
-
+	
 	public Cafe() {
-
 	}
-
-	public Cafe(String name, String address, String phone,
+	
+	public Cafe(String cafeName, String cafeAddress, String cafePhone,
 			Integer numOfEmployees, Integer numOfTables) {
-		this.name = name;
-		this.address = address;
-		this.phone = phone;
+		this.cafeName = cafeName;
+		this.cafeAddress = cafeAddress;
+		this.cafePhone = cafePhone;
 		this.numOfEmployees = numOfEmployees;
 		this.numOfTables = numOfTables;
 	}
 
-	public String getName() {
-		return name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "cafe_id", unique = true, nullable = false)
+	public Integer getCafeId() {
+		return cafeId;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	public void setCafeId(Integer cafeId) {
+		this.cafeId = cafeId;
 	}
 	
-	public String getAddress() {
-		return address;
+	@Column(name = "cafe_name", unique = true, nullable = false, length = 255)
+	public String getCafeName() {
+		return cafeName;
 	}
 	
-	public void setAddress(String address) {
-		this.address = address;
+	public void setCafeName(String cafeName) {
+		this.cafeName = cafeName;
 	}
 	
-	public String getPhone() {
-		return phone;
+	@Column(name = "cafe_address", unique = true, nullable = false, length = 255)
+	public String getCafeAddress() {
+		return cafeAddress;
 	}
 	
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setCafeAddress(String cafeAddress) {
+		this.cafeAddress = cafeAddress;
 	}
 	
+	@Column(name = "cafe_phone", unique = true, nullable = false, length = 9)
+	public String getCafePhone() {
+		return cafePhone;
+	}
+	
+	public void setCafePhone(String cafePhone) {
+		this.cafePhone = cafePhone;
+	}
+	
+	@Column(name = "num_of_employees", nullable = true, length = 2)
 	public Integer getNumOfEmployees() {
 		return numOfEmployees;
 	}
@@ -52,6 +81,7 @@ public class Cafe {
 		this.numOfEmployees = numOfEmployees;
 	}
 	
+	@Column(name = "num_of_tables", nullable = true, length = 2)
 	public Integer getNumOfTables() {
 		return numOfTables;
 	}
@@ -59,4 +89,5 @@ public class Cafe {
 	public void setNumOfTables(Integer numOfTables) {
 		this.numOfTables = numOfTables;
 	}
+	
 }
