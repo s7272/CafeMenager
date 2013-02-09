@@ -1,4 +1,4 @@
-package pl.edu.pjwstk.mpr.cafe;
+package pl.edu.pjwstk.mpr.cafe.model;
 
 import java.io.Serializable;
 
@@ -63,7 +63,7 @@ public class Cafe implements Serializable {
 		this.cafeAddress = cafeAddress;
 	}
 	
-	@Column(name = "cafe_phone", unique = true, nullable = false, length = 9)
+	@Column(name = "cafe_phone", unique = true, nullable = false, length = 10)
 	public String getCafePhone() {
 		return cafePhone;
 	}
@@ -90,4 +90,9 @@ public class Cafe implements Serializable {
 		this.numOfTables = numOfTables;
 	}
 	
+	@Override
+	public String toString() {
+		return "Cafe [cafeName=" + cafeName + ", cafeId=" + cafeId
+				+ ", cafeAddress=" + cafeAddress + "]";
+	}
 }

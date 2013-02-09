@@ -2,6 +2,7 @@ package pl.edu.pjwstk.mpr.cafe;
 
 import java.util.List;
 
+import pl.edu.pjwstk.mpr.cafe.model.Cafe;
 import pl.edu.pjwstk.mpr.person.Waitress;
 
 public class Order {
