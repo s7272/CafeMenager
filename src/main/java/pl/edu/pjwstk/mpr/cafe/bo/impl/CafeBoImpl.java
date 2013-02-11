@@ -1,5 +1,7 @@
 package pl.edu.pjwstk.mpr.cafe.bo.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +33,9 @@ public class CafeBoImpl implements CafeBo {
  
 	public Cafe findByCafeName(String cafeName){
 		return cafeDao.findByCafeName(cafeName);
+	}
+	
+	public List<Cafe> listAllCafes(){
+		return cafeDao.listAllCafes();
 	}
 }

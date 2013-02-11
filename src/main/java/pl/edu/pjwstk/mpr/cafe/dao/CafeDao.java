@@ -1,5 +1,7 @@
 package pl.edu.pjwstk.mpr.cafe.dao;
 
+import java.util.List;
+
 import pl.edu.pjwstk.mpr.cafe.model.Cafe;
 
 public interface CafeDao {
@@ -11,4 +13,6 @@ public interface CafeDao {
 	void delete(Cafe cafe);
 
 	Cafe findByCafeName(String cafeName);
+	
+	List<Cafe> listAllCafes();
 }

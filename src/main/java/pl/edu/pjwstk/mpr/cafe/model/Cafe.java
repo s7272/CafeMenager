@@ -63,7 +63,7 @@ public class Cafe implements Serializable {
 		this.cafeAddress = cafeAddress;
 	}
 	
-	@Column(name = "cafe_phone", unique = true, nullable = false, length = 10)
+	@Column(name = "cafe_phone", unique = true, nullable = false, length = 20)
 	public String getCafePhone() {
 		return cafePhone;
 	}

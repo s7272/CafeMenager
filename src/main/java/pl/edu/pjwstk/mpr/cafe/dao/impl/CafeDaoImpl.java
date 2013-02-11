@@ -28,5 +28,10 @@ public class CafeDaoImpl extends CustomHibernateDaoSupport implements CafeDao {
 				cafeName);
 		return (Cafe)list.get(0);
 	}
+	
+	public List<Cafe> listAllCafes() {
+		List<Cafe> list = getHibernateTemplate().find("from Cafe");
+		return list;
+	}
 
 }

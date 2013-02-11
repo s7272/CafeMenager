@@ -1,5 +1,7 @@
 package pl.edu.pjwstk.mpr.cafe.bo;
 
+import java.util.List;
+
 import pl.edu.pjwstk.mpr.cafe.model.Cafe;
 
 public interface CafeBo {
@@ -10,4 +12,6 @@ public interface CafeBo {
 	void delete(Cafe cafe);
 
 	Cafe findByCafeName(String cafeName);
+	
+	List<Cafe> listAllCafes();
 }
