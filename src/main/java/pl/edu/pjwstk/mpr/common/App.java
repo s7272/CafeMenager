@@ -4,15 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import org.hibernate.classic.Session;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import pl.edu.pjwstk.mpr.cafe.Translator;
 import pl.edu.pjwstk.mpr.cafe.bo.CafeBo;
 import pl.edu.pjwstk.mpr.cafe.model.Cafe;
-import pl.edu.pjwstk.mpr.person.Employee;
-import pl.edu.pjwstk.mpr.person.Menager;
 
 public class App {
 	public static void main(String[] args) {
@@ -28,8 +24,8 @@ public class App {
 		String cafeMenuUpdate = "1 - update name of cafe\n" +
 				"2 - update address\n" +
 				"3 - update phone\n" +
-				"4 - update all data" +
-				"0 - back to cafe menu";
+				"4 - update all data\n" +
+				"0 - back to cafe menu and";
 		String employeeMenu = "1 - New Employee\n" + "2 - Update Employee\n"
 				+ "3 - Get list of Employees\n" + "4 - Delete Employee\n"
 				+ "0 - Back to main menu";
@@ -85,37 +81,40 @@ public class App {
 							cafe.setCafePhone(cafePhone);
 
 							cafeBo.save(cafe);
-							optCafe = 0;
 							break;
 						case 2:
 							Integer optCafeUpdate;
-							
+							System.out.println("You are here: Manage Cafe - Update Cafe:\n");
+							System.out.print("Enter name of Cafe: ");
+							optString = br.readLine();
+							cafe2 = cafeBo.findByCafeName(optString);
 							do {
-								System.out.println("You are here: Manage Cafe - Update Cafe:\n");
-								System.out.print("Enter name of Cafe: ");
-								optString = br.readLine();
-								System.out.println("Choose what you want to do with:"+optString+"\n");
+								if (!cafe2.getCafeName().isEmpty()) {
+									optString = cafe2.getCafeName();
+								}
+								System.out.println("Choose what you want to do with: "+optString+"\n");
 								System.out.println(cafeMenuUpdate);
 								System.out.print("Your choice: ");
-								
-								optCafeUpdate = Integer.parseInt(optString);
-								cafe2 = cafeBo.findByCafeName(optString);
+								optCafeUpdate = Integer.parseInt(br.readLine());
 								
 								switch(optCafeUpdate) {
 								case 1:
 									System.out.print("Enter new name: ");
 									cafeName = br.readLine();
 									cafe2.setCafeName(cafeName);
+									cafeBo.update(cafe2);
 									break;
 								case 2:
 									System.out.print("Enter new address: ");
 									cafeAddress = br.readLine();
 									cafe2.setCafeAddress(cafeAddress);
+									cafeBo.update(cafe2);
 									break;
 								case 3:
 									System.out.print("Enter new phone: ");
 									cafePhone = br.readLine();
 									cafe2.setCafePhone(cafePhone);
+									cafeBo.update(cafe2);
 									break;
 								case 4:
 									System.out.print("Enter new name: ");
@@ -129,12 +128,12 @@ public class App {
 									System.out.print("Enter new phone: ");
 									cafePhone = br.readLine();
 									cafe2.setCafePhone(cafePhone);
+									cafeBo.update(cafe2);
 									break;
 								case 0:
 									break;
 								}
 							} while (optCafeUpdate != 0);
-							cafeBo.update(cafe2);
 							break;
 						case 3:
 							System.out.println("You are here: Manage Cafe - Get list of Cafes:\n");
@@ -159,7 +158,6 @@ public class App {
 					} while (optCafe != 0);
 				case 0:
 					System.out.println("Exiting...");
-					optMain = 0;
 					break;
 				default:
 					break;
@@ -168,19 +166,5 @@ public class App {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-//		// session.beginTransaction();
-//		// Employee employee = new Employee();
-//		//
-//		// employee.setAddress("Morska 108A/1");
-//		// employee.setFirstName("Tadeusz");
-//		// employee.setLastName("Tadz");
-//		// employee.setPhone("889332031");
-//		// employee.setSallary(new Double(1500));
-//		// employee.setRole(Translator.ROLE_MENAGER);
-//		//
-//		// session.save(employee);
-//		// session.getTransaction().commit();
-
 	}
 }

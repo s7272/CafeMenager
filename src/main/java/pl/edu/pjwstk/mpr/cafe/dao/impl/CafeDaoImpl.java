@@ -15,12 +15,12 @@ public class CafeDaoImpl extends CustomHibernateDaoSupport implements CafeDao {
 		getHibernateTemplate().save(cafe);
 	}
 
-	public void update(Cafe stock) {
-		getHibernateTemplate().update(stock);
+	public void update(Cafe cafe) {
+		getHibernateTemplate().update(cafe);
 	}
 
-	public void delete(Cafe stock) {
-		getHibernateTemplate().delete(stock);
+	public void delete(Cafe cafe) {
+		getHibernateTemplate().delete(cafe);
 	}
 
 	public Cafe findByCafeName(String cafeName) {
