@@ -6,10 +6,10 @@ import org.springframework.stereotype.Repository;
 
 import pl.edu.pjwstk.mpr.cafe.dao.CafeDao;
 import pl.edu.pjwstk.mpr.cafe.model.Cafe;
-import pl.edu.pjwstk.mpr.util.CustomHibernateDaoSupport;
+import pl.edu.pjwstk.mpr.util.CafeMenagerHibernateDaoSupport;
 
 @Repository("cafeDao")
-public class CafeDaoImpl extends CustomHibernateDaoSupport implements CafeDao {
+public class CafeDaoImpl extends CafeMenagerHibernateDaoSupport implements CafeDao {
 
 	public void save(Cafe cafe) {
 		getHibernateTemplate().save(cafe);

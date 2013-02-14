@@ -22,6 +22,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 		<property name="annotatedClasses">
 			<list>
 				<value>pl.edu.pjwstk.mpr.cafe.model.Cafe</value>
+				<value>pl.edu.pjwstk.mpr.person.model.Employee</value>
 			</list>
 		</property>
 

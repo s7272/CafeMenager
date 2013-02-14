@@ -6,10 +6,10 @@ import org.springframework.stereotype.Repository;
 
 import pl.edu.pjwstk.mpr.person.dao.EmployeeDao;
 import pl.edu.pjwstk.mpr.person.model.Employee;
-import pl.edu.pjwstk.mpr.util.CustomHibernateDaoSupport;
+import pl.edu.pjwstk.mpr.util.CafeMenagerHibernateDaoSupport;
 
 @Repository("employeeDao")
-public class EmployeeDaoImpl extends CustomHibernateDaoSupport implements
+public class EmployeeDaoImpl extends CafeMenagerHibernateDaoSupport implements
 		EmployeeDao {
 
 	public void save(Employee employee) {
@@ -27,8 +27,8 @@ public class EmployeeDaoImpl extends CustomHibernateDaoSupport implements
 	public Employee findByEmployeeFirstLastName(String firstName,
 			String lastName) {
 		List list = getHibernateTemplate().find(
-				"from Employee where firstName=" + firstName + " and lastName="
-						+ lastName);
+				"from Employee where firstName=? and lastName=?", 
+				new Object[]{firstName, lastName});
 		return (Employee) list.get(0);
 	}
 

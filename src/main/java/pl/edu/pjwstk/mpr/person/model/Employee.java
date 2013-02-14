@@ -124,7 +124,7 @@ public class Employee implements Serializable {
 		this.role = role;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "cafe_employee", catalog = "cafeDB", joinColumns = { @JoinColumn(name = "employee_id", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "cafe_id", nullable = false, updatable = false) })
 	public Set<Cafe> getCafes() {
 		return this.cafes;
@@ -136,10 +136,14 @@ public class Employee implements Serializable {
 
 	@Override
 	public String toString() {
+		String cafeNames = "";
+		for (Cafe c : cafes) {
+			cafeNames += c.getCafeName() + ", ";
+		}
 		return "Employee [employeeId=" + employeeId + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", address=" + address
-				+ ", phone=" + phone + ", sallary=" + sallary + ", role="
-				+ Translator.getRoleName(role) + "]";
+				+ ", phone=" + phone + ", sallary=" + sallary + ", cafes="
+				+ cafeNames + "role=" + Translator.getRoleName(role) + "]";
 	}
 
 }

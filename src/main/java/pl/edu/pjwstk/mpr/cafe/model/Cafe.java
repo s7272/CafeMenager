@@ -19,8 +19,8 @@ import pl.edu.pjwstk.mpr.person.model.Employee;
 
 @Entity
 @Table(name = "cafe", catalog = "cafeDB", uniqueConstraints = {
-		@UniqueConstraint(columnNames = "cafeName"),
-		@UniqueConstraint(columnNames = "cafeAddress") })
+		@UniqueConstraint(columnNames = "cafe_name"),
+		@UniqueConstraint(columnNames = "cafe_address") })
 public class Cafe implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -42,7 +42,7 @@ public class Cafe implements Serializable {
 		this.cafePhone = cafePhone;
 		this.numOfEmployees = numOfEmployees;
 	}
-	
+
 	public Cafe(String cafeName, String cafeAddress, String cafePhone,
 			Integer numOfEmployees, Set<Employee> employees) {
 		this.cafeName = cafeName;
@@ -98,20 +98,25 @@ public class Cafe implements Serializable {
 	public void setNumOfEmployees(Integer numOfEmployees) {
 		this.numOfEmployees = numOfEmployees;
 	}
-	
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "cafes")
+
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "cafes")
 	public Set<Employee> getEmployees() {
 		return this.employees;
 	}
- 
+
 	public void setEmployees(Set<Employee> employees) {
 		this.employees = employees;
 	}
 
 	@Override
 	public String toString() {
+		String employeeNames = "";
+		for (Employee e : employees) {
+			employeeNames += e.getFirstName() + " " + e.getLastName() + ", ";
+		}
 		return "Cafe [cafeId=" + cafeId + ", cafeName=" + cafeName
 				+ ", cafeAddress=" + cafeAddress + ", cafePhone=" + cafePhone
-				+ ", numOfEmployees=" + numOfEmployees + "]";
+				+ ", employees=" + employeeNames + "numOfEmployees="
+				+ numOfEmployees + "]";
 	}
 }

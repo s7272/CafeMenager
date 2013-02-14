@@ -5,7 +5,6 @@ CREATE TABLE `cafe` (
   `cafe_address` varchar(255) NOT NULL,
   `cafe_phone` varchar(20) NOT NULL,
   `num_of_employees` int(2) DEFAULT NULL,
-  `num_of_tables` int(2) DEFAULT NULL,
   PRIMARY KEY (`cafe_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
